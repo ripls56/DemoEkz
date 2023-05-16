@@ -1,0 +1,24 @@
+﻿<Application x:Class="DemoEkz.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DemoEkz"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             StartupUri="/Views/DirectorWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Primary colors-->
+             <SolidColorBrush Color="#FFD77F" x:Key="Primary"></SolidColorBrush>
+            <SolidColorBrush Color="#FF9933" x:Key="PrimaryOrange"></SolidColorBrush>
+            <SolidColorBrush Color="#8F1A2A" x:Key="PrimaryRed"></SolidColorBrush>
+            <!--Secondary colors-->
+             <SolidColorBrush Color="#E9E6B1" x:Key="Secondary"></SolidColorBrush>
+            <SolidColorBrush Color="#E1DDD7" x:Key="SecondaryGrey"></SolidColorBrush>
+            <SolidColorBrush Color="#FFFFFF" x:Key="SecondaryWhite"></SolidColorBrush>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary
+                    Theme="Dark"/>
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
