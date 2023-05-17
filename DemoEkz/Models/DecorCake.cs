@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DemoEkz.Models
+namespace DemoEkz.models
 {
     public partial class DecorCake
     {
@@ -15,6 +15,7 @@ namespace DemoEkz.Models
         public string UnitMeasurementsDecorCake { get; set; } = null!;
         public int CountDecorCake { get; set; }
         public string? ProviderName { get; set; }
+        public DateTime ShelfLife { get; set; }
         public byte[]? ImageDecorCake { get; set; }
         public string TypeNameDecorCake { get; set; } = null!;
         public decimal BuyCostDecorCake { get; set; }

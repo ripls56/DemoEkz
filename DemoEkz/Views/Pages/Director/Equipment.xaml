@@ -18,14 +18,16 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ui:DataGrid Name="DataGrid"></ui:DataGrid>
+        <ui:DataGrid 
+            AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn"
+            Name="DataGrid"></ui:DataGrid>
         <StackPanel
             Orientation="Horizontal"
             Grid.Row="1">
             <StackPanel
                 Orientation="Horizontal"
                 Name="GeneratePanel"></StackPanel>
-            <ui:Button Name="AddButton" Content="Добавить"/>
+            <ui:Button Name="AddButton" Content="Добавить" Click="AddButton_Click"/>
             <ui:Button Name="DelButton" Content="Удалить"/>
         </StackPanel>
     </Grid>

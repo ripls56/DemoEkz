@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DemoEkz.Models
+namespace DemoEkz.models
 {
     public partial class Ingridient
     {
@@ -14,6 +14,7 @@ namespace DemoEkz.Models
         public string NameIngridient { get; set; } = null!;
         public string UnitMeasurementsIngridient { get; set; } = null!;
         public int CountIngridient { get; set; }
+        public DateTime ShelfLife { get; set; }
         public string? ProviderName { get; set; }
         public byte[]? ImageIngridient { get; set; }
         public string TypeNameIngridient { get; set; } = null!;

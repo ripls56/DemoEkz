@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DemoEkz.Models
+namespace DemoEkz.models
 {
     public partial class Equipment
     {
@@ -12,6 +12,8 @@ namespace DemoEkz.Models
 
         public string NameEquipment { get; set; } = null!;
         public string TypeEquipmentName { get; set; } = null!;
+        public string DegreeOfWear { get; set; } = null!;
+        public DateTime AcquisitionDate { get; set; }
         public string DescriptionEquipment { get; set; } = null!;
 
         public virtual TypeEquipment TypeEquipmentNameNavigation { get; set; } = null!;

@@ -1,0 +1,46 @@
+﻿<ui:FluentWindow x:Class="DemoEkz.Views.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoEkz.Views"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="RegistrationWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="Регистрация"></ui:TitleBar>
+        <StackPanel Grid.Row="1" Width="320" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ui:TextBox Icon="Checkmark12" Name="loginTB" PlaceholderText="Логин"></ui:TextBox>
+            <Rectangle Height="12"></Rectangle>
+            <ui:PasswordBox Icon="Checkmark12" Name="passTB" PlaceholderText="Пароль"></ui:PasswordBox>
+            <Rectangle Height="12"></Rectangle>
+            <ui:PasswordBox Icon="Checkmark12" Name="passRepeatTB" PlaceholderText="Повторите пароль"></ui:PasswordBox>
+            <Rectangle Height="12"></Rectangle>
+            <ui:TextBox Name="LastName" PlaceholderText="Фамилия"></ui:TextBox>
+            <Rectangle Height="12"></Rectangle>
+            <ui:TextBox Name="Name" PlaceholderText="Имя"></ui:TextBox>
+            <Rectangle Height="12"></Rectangle>
+            <ui:TextBox Name="MiddleName" PlaceholderText="Отчество"></ui:TextBox>
+            <Rectangle Height="12"></Rectangle>
+            <StackPanel Width="320" Orientation="Horizontal">
+                <ComboBox Width="320" HorizontalContentAlignment="Center" Name="RoleCB" SelectedIndex="0">
+                    <ComboBoxItem>Заказчик</ComboBoxItem>
+                    <ComboBoxItem>Мастер</ComboBoxItem>
+                    <ComboBoxItem>Менеджер по работе с клиентами</ComboBoxItem>
+                    <ComboBoxItem>Менеджер по закупкам</ComboBoxItem>
+                    <ComboBoxItem>Директор</ComboBoxItem>
+                </ComboBox>
+                <Rectangle Width="20"></Rectangle>
+            </StackPanel>
+            <Rectangle Height="12"></Rectangle>
+            <ui:Button Click="Reg_Click" HorizontalAlignment="Center" >Зарегестрироваться</ui:Button>
+            <ui:Button Click="Auth_Click" HorizontalAlignment="Center" >Авторизация</ui:Button>
+        </StackPanel>
+        <ui:Snackbar Name="snackbar" Timeout="2000" VerticalAlignment="Bottom"></ui:Snackbar>
+
+    </Grid>
+</ui:FluentWindow>

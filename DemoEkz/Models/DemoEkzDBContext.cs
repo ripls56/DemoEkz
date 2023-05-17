@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DemoEkz.Models
+namespace DemoEkz.models
 {
     public partial class DemoEkzDBContext : DbContext
     {
@@ -43,7 +43,7 @@ namespace DemoEkz.Models
             modelBuilder.Entity<ArticulSpecification>(entity =>
             {
                 entity.HasKey(e => new { e.ProductName, e.IngridientArticul })
-                    .HasName("PK__ArticulS__DB8BC52C93EC91CB");
+                    .HasName("PK__ArticulS__DB8BC52C077B48E1");
 
                 entity.ToTable("ArticulSpecification");
 
@@ -63,19 +63,19 @@ namespace DemoEkz.Models
                     .WithMany(p => p.ArticulSpecifications)
                     .HasForeignKey(d => d.IngridientArticul)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ArticulSp__Ingri__5441852A");
+                    .HasConstraintName("FK__ArticulSp__Ingri__5535A963");
 
                 entity.HasOne(d => d.ProductNameNavigation)
                     .WithMany(p => p.ArticulSpecifications)
                     .HasForeignKey(d => d.ProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ArticulSp__Produ__534D60F1");
+                    .HasConstraintName("FK__ArticulSp__Produ__5441852A");
             });
 
             modelBuilder.Entity<DecorCake>(entity =>
             {
                 entity.HasKey(e => e.ArticulDecorCake)
-                    .HasName("PK__DecorCak__14F27036DFFE747A");
+                    .HasName("PK__DecorCak__14F2703667136A70");
 
                 entity.ToTable("DecorCake");
 
@@ -102,6 +102,8 @@ namespace DemoEkz.Models
                     .IsUnicode(false)
                     .HasColumnName("Provider_Name");
 
+                entity.Property(e => e.ShelfLife).HasColumnType("date");
+
                 entity.Property(e => e.TypeNameDecorCake)
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -119,13 +121,13 @@ namespace DemoEkz.Models
                 entity.HasOne(d => d.ProviderNameNavigation)
                     .WithMany(p => p.DecorCakes)
                     .HasForeignKey(d => d.ProviderName)
-                    .HasConstraintName("FK__DecorCake__Provi__49C3F6B7");
+                    .HasConstraintName("FK__DecorCake__Provi__4AB81AF0");
             });
 
             modelBuilder.Entity<DecorCakeSpecification>(entity =>
             {
                 entity.HasKey(e => new { e.ProductName, e.DecorCakeArticul })
-                    .HasName("PK__DecorCak__07B309449D6B2330");
+                    .HasName("PK__DecorCak__07B30944B20864D0");
 
                 entity.ToTable("DecorCakeSpecification");
 
@@ -145,24 +147,32 @@ namespace DemoEkz.Models
                     .WithMany(p => p.DecorCakeSpecifications)
                     .HasForeignKey(d => d.DecorCakeArticul)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DecorCake__Decor__4D94879B");
+                    .HasConstraintName("FK__DecorCake__Decor__4E88ABD4");
 
                 entity.HasOne(d => d.ProductNameNavigation)
                     .WithMany(p => p.DecorCakeSpecifications)
                     .HasForeignKey(d => d.ProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DecorCake__Produ__4CA06362");
+                    .HasConstraintName("FK__DecorCake__Produ__4D94879B");
             });
 
             modelBuilder.Entity<Equipment>(entity =>
             {
                 entity.HasKey(e => e.NameEquipment)
-                    .HasName("PK__Equipmen__4A9024967DC0B810");
+                    .HasName("PK__Equipmen__4A902496E570EEBD");
 
                 entity.Property(e => e.NameEquipment)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("Name_Equipment");
+
+                entity.Property(e => e.AcquisitionDate)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(CONVERT([date],getdate()))");
+
+                entity.Property(e => e.DegreeOfWear)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DescriptionEquipment)
                     .IsUnicode(false)
@@ -177,13 +187,13 @@ namespace DemoEkz.Models
                     .WithMany(p => p.Equipment)
                     .HasForeignKey(d => d.TypeEquipmentName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Equipment__Descr__3D5E1FD2");
+                    .HasConstraintName("FK__Equipment__Descr__3E52440B");
             });
 
             modelBuilder.Entity<Ingridient>(entity =>
             {
                 entity.HasKey(e => e.ArticulIngridient)
-                    .HasName("PK__Ingridie__A896910DBD1328F2");
+                    .HasName("PK__Ingridie__A896910D6688DB0E");
 
                 entity.ToTable("Ingridient");
 
@@ -222,6 +232,8 @@ namespace DemoEkz.Models
                     .IsUnicode(false)
                     .HasColumnName("Provider_Name");
 
+                entity.Property(e => e.ShelfLife).HasColumnType("date");
+
                 entity.Property(e => e.TypeNameIngridient)
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -235,13 +247,13 @@ namespace DemoEkz.Models
                 entity.HasOne(d => d.ProviderNameNavigation)
                     .WithMany(p => p.Ingridients)
                     .HasForeignKey(d => d.ProviderName)
-                    .HasConstraintName("FK__Ingridien__Provi__5070F446");
+                    .HasConstraintName("FK__Ingridien__Provi__5165187F");
             });
 
             modelBuilder.Entity<OperationSpecification>(entity =>
             {
                 entity.HasKey(e => new { e.ProductName, e.NameOperationSpecification, e.NumberOperationSpecification })
-                    .HasName("PK__Operatio__632CCDEC5F31E7B4");
+                    .HasName("PK__Operatio__632CCDEC414FB518");
 
                 entity.ToTable("OperationSpecification");
 
@@ -267,19 +279,19 @@ namespace DemoEkz.Models
                 entity.HasOne(d => d.EquipmentNameNavigation)
                     .WithMany(p => p.OperationSpecifications)
                     .HasForeignKey(d => d.EquipmentName)
-                    .HasConstraintName("FK__Operation__Equip__412EB0B6");
+                    .HasConstraintName("FK__Operation__Equip__4222D4EF");
 
                 entity.HasOne(d => d.ProductNameNavigation)
                     .WithMany(p => p.OperationSpecifications)
                     .HasForeignKey(d => d.ProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Operation__Produ__403A8C7D");
+                    .HasConstraintName("FK__Operation__Produ__412EB0B6");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.NameProduct)
-                    .HasName("PK__Product__0F172890DE099426");
+                    .HasName("PK__Product__0F1728904AE6AB81");
 
                 entity.ToTable("Product");
 
@@ -294,7 +306,7 @@ namespace DemoEkz.Models
             modelBuilder.Entity<Provider>(entity =>
             {
                 entity.HasKey(e => e.NameProvider)
-                    .HasName("PK__Provider__4441E4A53D5A670B");
+                    .HasName("PK__Provider__4441E4A5998A1895");
 
                 entity.ToTable("Provider");
 
@@ -313,7 +325,7 @@ namespace DemoEkz.Models
             modelBuilder.Entity<SemiProductSpecification>(entity =>
             {
                 entity.HasKey(e => new { e.ProductName, e.SemiProductName })
-                    .HasName("PK__SemiProd__E3F5B100250023B5");
+                    .HasName("PK__SemiProd__E3F5B100E57CA862");
 
                 entity.ToTable("SemiProductSpecification");
 
@@ -333,19 +345,19 @@ namespace DemoEkz.Models
                     .WithMany(p => p.SemiProductSpecificationProductNameNavigations)
                     .HasForeignKey(d => d.ProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SemiProdu__Produ__440B1D61");
+                    .HasConstraintName("FK__SemiProdu__Produ__44FF419A");
 
                 entity.HasOne(d => d.SemiProductNameNavigation)
                     .WithMany(p => p.SemiProductSpecificationSemiProductNameNavigations)
                     .HasForeignKey(d => d.SemiProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SemiProdu__SemiP__44FF419A");
+                    .HasConstraintName("FK__SemiProdu__SemiP__45F365D3");
             });
 
             modelBuilder.Entity<SystemUser>(entity =>
             {
                 entity.HasKey(e => new { e.LoginSystemUser, e.PasswordSystemUser })
-                    .HasName("PK__SystemUs__913011DC36E2E8E6");
+                    .HasName("PK__SystemUs__913011DC4DA76F51");
 
                 entity.ToTable("SystemUser");
 
@@ -389,7 +401,7 @@ namespace DemoEkz.Models
             modelBuilder.Entity<TypeEquipment>(entity =>
             {
                 entity.HasKey(e => e.NameTypeEquipment)
-                    .HasName("PK__TypeEqui__7100DC581A55CB4B");
+                    .HasName("PK__TypeEqui__7100DC583C1F8AD5");
 
                 entity.ToTable("TypeEquipment");
 
@@ -402,7 +414,7 @@ namespace DemoEkz.Models
             modelBuilder.Entity<UserOrder>(entity =>
             {
                 entity.HasKey(e => new { e.NumberUserOrder, e.DateUserOrder })
-                    .HasName("PK__UserOrde__B2314F374EE92376");
+                    .HasName("PK__UserOrde__B2314F37981D8978");
 
                 entity.ToTable("UserOrder");
 
@@ -457,19 +469,19 @@ namespace DemoEkz.Models
                     .WithMany(p => p.UserOrders)
                     .HasForeignKey(d => d.ProductName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserOrder__Produ__59FA5E80");
+                    .HasConstraintName("FK__UserOrder__Produ__5AEE82B9");
 
                 entity.HasOne(d => d.EmployeeSystemUser)
                     .WithMany(p => p.UserOrderEmployeeSystemUsers)
                     .HasForeignKey(d => new { d.EmployeeSystemUserLogin, d.EmployeeSystemUserPassword })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserOrder__59063A47");
+                    .HasConstraintName("FK__UserOrder__59FA5E80");
 
                 entity.HasOne(d => d.SystemUser)
                     .WithMany(p => p.UserOrderSystemUsers)
                     .HasForeignKey(d => new { d.SystemUserLogin, d.SystemUserPassword })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserOrder__5812160E");
+                    .HasConstraintName("FK__UserOrder__59063A47");
             });
 
             OnModelCreatingPartial(modelBuilder);

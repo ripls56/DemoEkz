@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DemoEkz.Models
+namespace DemoEkz.models
 {
     public partial class OperationSpecification
     {
